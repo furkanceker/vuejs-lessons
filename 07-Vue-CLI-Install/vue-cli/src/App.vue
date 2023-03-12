@@ -1,15 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h3>{{ title }}</h3>
+  <input type="text" ref="name">
+  <br>
+  <input type="password" ref="password">
+  <br>
+  <button @click="login">Giriş</button>
+  <p v-if="isLogin">Giriş Başarılı</p>
+  <p v-else>Giriş Başarısız</p>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return {
+      title:'Giriş Yap',
+      name:'Furkan',
+      password:'1234',
+      isLogin:false
+    }
+  },
+  methods: {
+    login(){
+      return this.$refs.name.value == this.name && this.$refs.password.value == this.password ? this.isLogin = true : this.isLogin = false
+    }
   }
 }
 </script>
