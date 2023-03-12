@@ -1,12 +1,16 @@
 <template>
-  <h3>{{ title }}</h3>
+    <div>
+        <h3>{{ titleText }}</h3>
+        <h3>{{ text }}</h3>
+    </div>
 </template>
 
 <script>
 export default {
+    props:['titleText','text'],
     data() {
         return {
-            title:"Vue 3 Giriş"
+            
         }
     },
 }

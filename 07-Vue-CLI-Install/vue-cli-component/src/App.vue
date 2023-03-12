@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Title></Title>
-    <h3>Deneme</h3>
+    <Title :titleText="text" :text="text2"></Title>
   </div>
 </template>
 
@@ -12,6 +11,12 @@ export default {
   components: {
     Title
   },
+  data(){
+    return{
+      text:'Vue 3 Intro',
+      text2:'Welcome to Vue'
+    }
+  }
 }
 </script>
 
