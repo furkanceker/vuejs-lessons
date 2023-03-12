@@ -1,5 +1,8 @@
 <template>
-  <Title></Title>
+  <div>
+    <Title></Title>
+    <h3>Deneme</h3>
+  </div>
 </template>
 
 <script>
