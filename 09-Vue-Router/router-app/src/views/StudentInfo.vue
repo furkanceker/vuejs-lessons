@@ -11,7 +11,7 @@ export default {
     data() {
         return {
             title:'Öğrenci Bilgi Sayfası',
-            studentId:this.$route.params.id
+            studentId:this.$route.params.id,
         }
     }
 }
