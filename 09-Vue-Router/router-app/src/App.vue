@@ -1,7 +1,8 @@
 <template>
   <nav>
     <router-link :to="{path:'/'}">Home</router-link> |
-    <router-link :to="{path:'/about'}">About</router-link>
+    <router-link :to="{path:'/about'}">About</router-link> |
+    <router-link :to="{path:'/students'}">Students</router-link>
   </nav>
   <router-view/>
 </template>
