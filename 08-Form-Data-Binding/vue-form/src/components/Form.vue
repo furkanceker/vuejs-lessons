@@ -4,6 +4,12 @@
     <p>
         {{ text }}
     </p>
+    <select v-model="framework">
+        <option>Vue</option>
+        <option>React</option>
+        <option>Svelte</option>
+    </select>
+    <p>{{ framework }}</p>
   </form>
 </template>
 
@@ -11,7 +17,8 @@
 export default {
  data(){
     return {
-        text:"deneme"
+        text:"Bir Metin Girin",
+        framework:"Framework Seçin",
     }
  }
 }
