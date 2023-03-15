@@ -28,6 +28,12 @@
         <label for="svelte">Svelte</label>
     </div>
     <p>Seçilen Frameworkler : {{ frameworks }}</p>
+    <hr>
+    <h3>Öğrenciler</h3>
+    <input type="text" v-model="student" @keyup="addStudent">
+    <div v-for="student in students" :key="student">
+        <span>{{ student }}</span>
+    </div>
   </form>
 </template>
 
@@ -38,7 +44,19 @@ export default {
         text:"Bir Metin Girin",
         framework:"Framework Seçin",
         checked:false,
-        frameworks: []
+        frameworks: [],
+        student:'',
+        students: []
+    }
+ },
+ methods: {
+    addStudent(e){
+        if(e.keyCode == 13 && this.student){
+            if(!this.students.includes(this.student)){
+                this.students.push(this.student)
+            }
+            this.student = ''
+        }
     }
  }
 }
