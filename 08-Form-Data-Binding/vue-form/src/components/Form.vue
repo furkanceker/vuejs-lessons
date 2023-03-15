@@ -34,6 +34,8 @@
     <div v-for="student in students" :key="student">
         <span @click="deleteStudent(student)">{{ student }}</span>
     </div>
+    <br>
+    <button @click.prevent="sendData">Gönder</button>
   </form>
 </template>
 
@@ -62,6 +64,9 @@ export default {
         this.students = this.students.filter(item => {
             return student !== item
         })
+    },
+    sendData(){
+        console.log("veriler gönderildi")
     }
  }
 }
