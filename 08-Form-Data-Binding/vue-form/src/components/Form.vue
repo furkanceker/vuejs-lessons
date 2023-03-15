@@ -10,6 +10,24 @@
         <option>Svelte</option>
     </select>
     <p>{{ framework }}</p>
+    <hr>
+    <label for="checkbox1">Onay</label>
+    <input type="checkbox" id="checkbox1" v-model="checked">
+    <p>{{ checked ? 'Onaylandı' : 'Onaylanmadı'}}</p>
+    <br>
+    <div>
+        <input type="checkbox" id="vue" value="Vue" v-model="frameworks">
+        <label for="vue">Vue</label>
+    </div>
+    <div>
+        <input type="checkbox" id="react" value="React" v-model="frameworks">
+        <label for="react">React</label>
+    </div>
+    <div>
+        <input type="checkbox" id="svelte" value="Svelte" v-model="frameworks">
+        <label for="svelte">Svelte</label>
+    </div>
+    <p>Seçilen Frameworkler : {{ frameworks }}</p>
   </form>
 </template>
 
@@ -19,6 +37,8 @@ export default {
     return {
         text:"Bir Metin Girin",
         framework:"Framework Seçin",
+        checked:false,
+        frameworks: []
     }
  }
 }
