@@ -5,6 +5,10 @@
     <input type="text" v-model="name">
     <input type="text" v-model="surname">
     <p>{{ nameSurname }}</p>
+    <hr>
+    <input type="number" v-model="number1"> <br>
+    <input type="number" v-model="number2"> <br>
+    <input type="number" v-model="total"> 
   </div>
 </template>
 
@@ -14,6 +18,17 @@ export default {
         return {
             name:'',
             surname:'',
+            number1:0,
+            number2:0,
+            total:0,
+        }
+    },
+    watch: {
+        number1(newValue, oldValue) {
+            this.total = parseInt(this.number1) + parseInt(this.number2)
+        },
+        number2(newValue, oldValue) {
+            this.total = parseInt(this.number1) + parseInt(this.number2)
         }
     },
     computed: {
