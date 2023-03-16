@@ -16,7 +16,8 @@
 
             </div>
             <div class="media-content">
-              <p @click="completeTodo(todo)" :class="{done: todo.done}" class="title cursor">{{ todo.content }}</p>
+              <p @click="completeTodo(todo)" @dblclick="deleteTodo(todo)" :class="{done: todo.done}" class="title cursor">{{ todo.content }}</p>
+              <span>Not : Silmek için çift tıkla!</span>
             </div>
           </div>
         </div>
@@ -41,11 +42,17 @@ export default {
       todo.value = ''
     }
 
+    function deleteTodo(todo) {
+      const index = todos.value.indexOf(todo);
+      todos.value.splice(index, 1);
+    }
+
+
     function completeTodo(todo){
       todo.done = !todo.done
     }
 
-    return {todo, todos, addTodo, completeTodo}
+    return {todo, todos, addTodo, completeTodo, deleteTodo}
   },
 
 }
@@ -53,6 +60,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
