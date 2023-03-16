@@ -1,11 +1,11 @@
 <template>
-  <div class="project">
+  <div class="project" :class="{complete: project.complete}">
     <div class="actions">
         <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
         <div class="icons">
             <span class="material-icons">edit</span>
             <span class="material-icons" @click="deleteProject">delete</span>
-            <span class="material-icons">done</span>
+            <span class="material-icons" @click="completeProject">done</span>
         </div>
     </div>
     <div v-if="showDetails" class="details">
@@ -27,12 +27,19 @@ export default {
         deleteProject() {
             fetch(this.uri, {method: "DELETE"})
             .then(() => this.$emit('delete',this.project.id))
+            .catch(err => console.log(err.message))
         },
         editProject() {
 
         },
         completeProject() {
-
+            fetch(this.uri, {
+                method: "PATCH",
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({complete: !this.project.complete})
+            })
+            .then(() => this.$emit('complete',this.project.id))
+            .catch(err => console.log(err.message))
         },
     }
 }
@@ -45,7 +52,7 @@ export default {
     padding: 10px 20px;
     border-radius: 5px;
     box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
-    border-left: 4px solid #76dd78;
+    border-left: 4px solid #ff5500;
 }
 h3 {
     cursor: pointer;
@@ -64,7 +71,10 @@ h3 {
 .material-icons:hover{
     color: #777;
 }
-.details {
-
+.project.complete {
+    border-left: 4px solid #76dd78;
+}
+.project.complete h3 {
+  text-decoration: line-through;
 }
 </style>
