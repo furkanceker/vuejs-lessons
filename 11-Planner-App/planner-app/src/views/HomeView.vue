@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <FilterNav @filterChange="current = $event" :current="current"></FilterNav>
     <div v-if="projects.length">
       <div v-for="project in filteredProject" :key="project.id ">

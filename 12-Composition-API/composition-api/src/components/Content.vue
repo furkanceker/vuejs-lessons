@@ -12,6 +12,7 @@
 <script>
 import { ref } from 'vue'
 import getContentsFetch from '../composable/getContentsFetch'
+import {useRoute, useRouter} from 'vue-router'
 export default {
 /*     
     props: ['contents'],
@@ -21,6 +22,11 @@ export default {
 */
     setup(){
         
+        const route = useRoute()
+        const router = useRouter()
+        console.log('Route:', route)
+        console.log('Router:', router)
+
         const {contents, err, getContents} = getContentsFetch()
         getContents()
         return { contents, err}

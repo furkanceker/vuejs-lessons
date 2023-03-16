@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .filter-nav button{
     background: none;
     border: none;
