@@ -2,14 +2,14 @@
   <div class="home">
     <h1>Home</h1>
     <p>{{ name }} - {{ job }}</p>
-    <button @click="clicked">Tıkla</button>
+    <button @click="clicked" ref="info">Tıkla</button>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import { onMounted } from 'vue';
+import { ref } from 'vue';
 
 export default {
   name: 'HomeView',
@@ -17,10 +17,15 @@ export default {
   setup() {
     let name = "Furkan"
     let job  = "Web Developer"
+
+    const info = ref(null)
+
     const clicked = () => {
-      console.log("Buton tıklandı")
+      /* console.log("Buton tıklandı") */
+      console.log(info, info.value)
     }
-    return {name,job,clicked}
+
+    return {name,job,clicked,info}
   },
 }
 </script>
