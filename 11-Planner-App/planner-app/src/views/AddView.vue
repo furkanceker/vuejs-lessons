@@ -3,7 +3,7 @@
     <label>Title : </label>
     <input type="text" v-model="title" required>
     <label>Detail : </label>
-    <textarea v-model="detail"></textarea>
+    <textarea v-model="detail" required></textarea>
     <button>Add Project</button>
   </form>
 </template>
