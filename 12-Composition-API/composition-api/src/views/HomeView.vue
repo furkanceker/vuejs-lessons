@@ -1,8 +1,9 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>{{ name }} - {{ job }}</p>
-    <button @click="clicked" ref="info">Tıkla</button>
+    <p>{{ name }} </p>
+    <button @click="clicked">Tıkla</button>
+    <input type="text" v-model="name">
   </div>
 </template>
 
@@ -15,17 +16,14 @@ export default {
   name: 'HomeView',
   components: {},
   setup() {
-    let name = "Furkan"
-    let job  = "Web Developer"
-
-    const info = ref(null)
+    let name = ref("Furkan")
 
     const clicked = () => {
-      /* console.log("Buton tıklandı") */
-      console.log(info, info.value)
+      name.value = "Deneme Click"
+      console.log(name)
     }
 
-    return {name,job,clicked,info}
+    return {name,clicked}
   },
 }
 </script>
