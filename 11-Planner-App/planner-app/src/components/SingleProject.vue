@@ -3,9 +3,9 @@
     <div class="actions">
         <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
         <div class="icons">
-            <span class="material-icons">edit</span>
-            <span class="material-icons" @click="deleteProject">delete</span>
-            <span class="material-icons" @click="completeProject">done</span>
+            <span class="material-icons edit">edit</span>
+            <span class="material-icons delete" @click="deleteProject">delete</span>
+            <span class="material-icons tick" @click="completeProject">done</span>
         </div>
     </div>
     <div v-if="showDetails" class="details">
@@ -68,13 +68,19 @@ h3 {
     color: #bbb;
     cursor: pointer;
 }
-.material-icons:hover{
-    color: #777;
-}
 .project.complete {
     border-left: 4px solid #76dd78;
 }
 .project.complete h3 {
   text-decoration: line-through;
+}
+.tick {
+    color: #76dd78;
+}
+.delete {
+    color: #f8483c;
+}
+.edit {
+    color: #279af8;
 }
 </style>
