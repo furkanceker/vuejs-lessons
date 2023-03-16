@@ -1,5 +1,5 @@
 <template>
-  <div class="content mx-5">
+  <div class="content mx-5 mt-5">
     <h1>Todo App</h1>
     <form @submit.prevent="addTodo">
       <div class="field">
@@ -7,8 +7,20 @@
           <input type="text" v-model="todo" class="input" placeholder="Bir Görev Girin..">
         </div>
       </div>
-      <button type="submit" class="button is-warning">Add</button>
+      <button type="submit" class="button is-success">Add</button>
     </form>
+    <div v-for="todo in todos" :key="todo.id" class="card my-5 mx-5">
+        <div class="card-content">
+          <div class="media">
+            <div class="media-left">
+
+            </div>
+            <div class="media-content">
+              <p @click="completeTodo(todo)" :class="{done: todo.done}" class="title cursor">{{ todo.content }}</p>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -17,7 +29,7 @@ import { ref } from "vue"
 
 export default {
   setup() {
-    const todo = ref('',)
+    const todo = ref('')
     const todos = ref([])
 
     function addTodo(){
@@ -29,7 +41,11 @@ export default {
       todo.value = ''
     }
 
-    return {todo, todos}
+    function completeTodo(todo){
+      todo.done = !todo.done
+    }
+
+    return {todo, todos, addTodo, completeTodo}
   },
 
 }
@@ -44,7 +60,6 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
 nav {
   padding: 30px;
 }
@@ -56,5 +71,11 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+.done {
+  text-decoration: line-through;
+}
+.cursor {
+  cursor: pointer;
 }
 </style>
