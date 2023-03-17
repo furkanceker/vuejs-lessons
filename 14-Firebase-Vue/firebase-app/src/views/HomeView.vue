@@ -6,7 +6,7 @@
 
 <script>
 import { onMounted } from 'vue';
-import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, query, where, onSnapshot } from '@firebase/firestore'
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, query, where, onSnapshot,updateDoc } from '@firebase/firestore'
 import {fb} from "../firebase/config"
 
 export default {
@@ -36,13 +36,20 @@ export default {
       // const docRef = doc(db,'books','Y6uabHzcQyOHkZ2I9nT9')
       // deleteDoc(docRef)
 
-      const q = query(fbRef,where('pageCount','==',300))
-      onSnapshot(q,(ss) => {
-        let books = []
-        ss.docs.forEach((doc) => {
-          books.push({...doc.data(),id:doc.id})
-        })
-        console.log(books)
+      // QUERY //
+
+      // const q = query(fbRef,where('pageCount','==',300))
+      // onSnapshot(q,(ss) => {
+      // let books = []
+      // ss.docs.forEach((doc) => {
+      // books.push({...doc.data(),id:doc.id})
+      // })
+      // console.log(books)
+      // })
+
+      const docRef = doc(db,'books','vkHtmYiKifLmVAez7QIN')
+      updateDoc(docRef,{
+        pageCount:1000
       })
       return data
     }) 
