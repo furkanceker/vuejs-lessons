@@ -2,7 +2,6 @@ import { async } from '@firebase/util'
 import {ref} from 'vue'
 import {collection, getDocs, getFirestore} from '@firebase/firestore'
 import { fb } from '../firebase/config'
-import exp from 'constants'
 
 const getPosts = async () => {
     const db = getFirestore()
