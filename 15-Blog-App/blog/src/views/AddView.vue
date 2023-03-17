@@ -2,9 +2,9 @@
   <form>
     <label>Title : </label>
     <input type="text" v-model="title" required>
-    <label>Detail : </label>
-    <textarea v-model="detail" required></textarea>
-    <button>Add Project</button>
+    <label>Content : </label>
+    <textarea v-model="content" required></textarea>
+    <button>Add Blog</button>
   </form>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   data(){
     return {
       title: '',
-      detail: ''
+      content: ''
     }
   },
 }
