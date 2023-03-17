@@ -6,7 +6,7 @@
 
 <script>
 import { onMounted } from 'vue';
-import {getFirestore,collection,getDocs,addDoc,deleteDoc} from 'firebase/firestore/lite'
+import {getFirestore,collection,getDocs,addDoc,deleteDoc,doc} from 'firebase/firestore/lite'
 import {fb} from "../firebase/config"
 
 export default {
@@ -30,6 +30,8 @@ export default {
         pageCount: 200,
       }) 
 */
+      const docRef = doc(db,'books','Y6uabHzcQyOHkZ2I9nT9')
+      deleteDoc(docRef)
       return data
     }) 
   }
