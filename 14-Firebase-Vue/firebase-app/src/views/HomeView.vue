@@ -6,7 +6,7 @@
 
 <script>
 import { onMounted } from 'vue';
-import {getFirestore,collection,getDocs,addDoc,deleteDoc,doc} from 'firebase/firestore/lite'
+import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, query, where, onSnapshot } from '@firebase/firestore'
 import {fb} from "../firebase/config"
 
 export default {
@@ -20,18 +20,30 @@ export default {
       const data = fbDocs.docs.map((doc) => doc.data())
       const docId = fbDocs.docs.map((doc) => doc.id)
     
-      console.log(docId)
-      console.log(data)
+      // console.log(docId)
+      // console.log(data)
+
       // VERİ EKLEME //
-/*       
-        addDoc(fbRef,{
-        author: 'Furkan Çeker',
-        name: 'Vue 3 Öğreniyorum',
-        pageCount: 200,
-      }) 
-*/
-      const docRef = doc(db,'books','Y6uabHzcQyOHkZ2I9nT9')
-      deleteDoc(docRef)
+       
+      // addDoc(fbRef,{
+      // author: 'Furkan Çeker',
+      // name: 'Vue 3 Öğreniyorum',
+      // pageCount: 200,
+      // }) 
+
+      // VERİ SİLME //
+
+      // const docRef = doc(db,'books','Y6uabHzcQyOHkZ2I9nT9')
+      // deleteDoc(docRef)
+
+      const q = query(fbRef,where('pageCount','==',300))
+      onSnapshot(q,(ss) => {
+        let books = []
+        ss.docs.forEach((doc) => {
+          books.push({...doc.data(),id:doc.id})
+        })
+        console.log(books)
+      })
       return data
     }) 
   }
