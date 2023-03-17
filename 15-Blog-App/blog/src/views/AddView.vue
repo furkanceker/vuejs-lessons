@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="handleSubmit">
     <label>Title : </label>
     <input type="text" v-model="title" required>
     <label>Content : </label>
@@ -9,13 +9,30 @@
 </template>
 
 <script>
+import {ref} from 'vue'
+import {useRouter} from 'vue-router'
+import { addDoc,collection,getFirestore } from '@firebase/firestore'
+import {fb} from '../firebase/config'
 export default {
-  data(){
-    return {
-      title: '',
-      content: ''
+  setup(){
+    const router = useRouter();
+    const title = ref('')
+    const content = ref('')
+    const id = Date.now()
+
+    function handleSubmit() {
+      const post = {
+        title: title.value,
+        content: content.value,
+        id: ""+id+"",
+      }
+      const db = getFirestore(fb)
+      const fbRef = collection(db,"posts")
+      addDoc(fbRef,post)
+      .then(() => router.push('/'))
     }
-  },
+    return {title,content,handleSubmit}
+  }
 }
 </script>
 
