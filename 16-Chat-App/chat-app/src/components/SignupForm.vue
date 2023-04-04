@@ -9,13 +9,15 @@
 
 <script>
 import {ref} from 'vue'
+import useSignup from '../compasables/useSignup'
 export default {
     setup(){
+        const {error, signup} = useSignup()
         const nickname = ref('')
         const email = ref('')
         const password = ref('')
-        const handleSubmit = () => {
-            console.log(nickname.value, email.value, password.value)
+        const handleSubmit = async () => {
+            await signup(email.value,password.value,nickname.value)
         }
         return {nickname, email, password, handleSubmit}
     }
