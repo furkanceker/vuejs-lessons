@@ -3,6 +3,7 @@
     <input type="text" required placeholder="Nickname" v-model="nickname">
     <input type="email" required placeholder="Email" v-model="email">
     <input type="password" required placeholder="Password" v-model="password">
+    <div class="error">{{ error }}</div>
     <button>Sign Up</button>
   </form>
 </template>
@@ -19,7 +20,7 @@ export default {
         const handleSubmit = async () => {
             await signup(email.value,password.value,nickname.value)
         }
-        return {nickname, email, password, handleSubmit}
+        return {nickname, email, password, handleSubmit, error}
     }
 }
 </script>
