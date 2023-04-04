@@ -12,13 +12,16 @@
 import {ref} from 'vue'
 import useSignup from '../compasables/useSignup'
 export default {
-    setup(){
+    setup(props, context){
         const {error, signup} = useSignup()
         const nickname = ref('')
         const email = ref('')
         const password = ref('')
         const handleSubmit = async () => {
-            await signup(email.value,password.value,nickname.value)
+          await signup(email.value,password.value,nickname.value)
+          if(!error.value){
+            context.emit('signup')      
+          }
         }
         return {nickname, email, password, handleSubmit, error}
     }
