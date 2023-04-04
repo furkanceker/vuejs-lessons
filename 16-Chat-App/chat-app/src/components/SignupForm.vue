@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    <input type="text" required placeholder="Nickname" v-model="nickname">
+    <input type="text" required placeholder="Nickname" v-model="displayName">
     <input type="email" required placeholder="Email" v-model="email">
     <input type="password" required placeholder="Password" v-model="password">
     <div class="error">{{ error }}</div>
@@ -14,16 +14,16 @@ import useSignup from '../compasables/useSignup'
 export default {
     setup(props, context){
         const {error, signup} = useSignup()
-        const nickname = ref('')
+        const displayName = ref('')
         const email = ref('')
         const password = ref('')
         const handleSubmit = async () => {
-          await signup(email.value,password.value,nickname.value)
+          await signup(email.value,password.value,displayName.value)
           if(!error.value){
             context.emit('signup')      
           }
         }
-        return {nickname, email, password, handleSubmit, error}
+        return {displayName, email, password, handleSubmit, error}
     }
 }
 </script>

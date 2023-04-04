@@ -1,8 +1,8 @@
 <template>
-  <nav>
+  <nav v-if="user">
     <div>
-        <p>Hi (nickname)</p>
-        <p class="email">Currently logged in as... (email)</p>
+        <p>Hi {{ user.displayName }}</p>
+        <p class="email">Currently logged in as... {{user.email}}</p>
     </div>
     <button @click="handleClick">Logout</button>
   </nav>
@@ -10,16 +10,18 @@
 
 <script>
 import useLogout from '../compasables/useLogout';
+import getUser from '../compasables/getUser'
 export default {
     setup(){
         const {logout, error} = useLogout()
+        const {user} = getUser()
         const handleClick = async () => {
             await logout()
             if(!error.value){
                 console.log("user logged out")
             }
         }
-        return {handleClick}
+        return {handleClick,user}
     }
 }
 </script>
