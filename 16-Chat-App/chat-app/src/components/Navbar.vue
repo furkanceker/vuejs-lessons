@@ -4,13 +4,23 @@
         <p>Hi (nickname)</p>
         <p class="email">Currently logged in as... (email)</p>
     </div>
-    <button>Logout</button>
+    <button @click="handleClick">Logout</button>
   </nav>
 </template>
 
 <script>
+import useLogout from '../compasables/useLogout';
 export default {
-
+    setup(){
+        const {logout, error} = useLogout()
+        const handleClick = async () => {
+            await logout()
+            if(!error.value){
+                console.log("user logged out")
+            }
+        }
+        return {handleClick}
+    }
 }
 </script>
 
