@@ -16,7 +16,12 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: () => import("../views/auth/Signup.vue")
-  }
+  },
+  {
+    path: '/playlist/create',
+    name: 'createplaylist',
+    component: () => import("../views/playlists/CreatePlayList.vue")
+  },
 ]
 
 const router = createRouter({
