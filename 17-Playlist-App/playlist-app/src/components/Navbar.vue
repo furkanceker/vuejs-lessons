@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
     <nav>
-        <img src="@/assets/logo.png" alt="">
+        <router-link :to="{name:'home'}"><img src="@/assets/logo.png" alt=""></router-link>
         <h1><router-link :to="{name:'home'}">PlayList</router-link></h1>
         <div class="links">
-            <button>Logout</button>
+            <button @click="handleClick">Logout</button>
             <router-link :to="{name:'signup'}" class="btn">Sign up</router-link>
             <router-link :to="{name:'login'}" class="btn">Login</router-link>
         </div>
@@ -13,8 +13,21 @@
 </template>
 
 <script>
+import useLogout from '@/composables/useLogout'
+import {useRouter} from 'vue-router';
 export default {
+    setup() {
+        const {logout} = useLogout()
+        const router = useRouter()
 
+        const handleClick = async () => {
+            await logout()
+            console.log("user logged out")
+            router.push({name:'login'})
+        }
+
+        return {handleClick}
+    }
 }
 </script>
 
