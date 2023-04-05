@@ -40,6 +40,8 @@ textarea {
     width: 100%;
     max-width: 100%;
     min-width: 100%;
+    min-height: 40px;
+    max-height: 40px;
     margin-bottom: 10px;
     padding: 10px;
     box-sizing: border-box;
@@ -47,5 +49,10 @@ textarea {
     border-radius: 20px;
     font-family: inherit;
     outline: none;
+    resize: none;
+    overflow: auto;
+}
+textarea::placeholder{
+    padding: 3px;
 }
 </style>
