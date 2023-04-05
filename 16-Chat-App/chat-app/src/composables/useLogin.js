@@ -10,7 +10,6 @@ const login = async (email,password) => {
         error.value = null
         return res
     } catch (err) {
-        console.log(err.value)
         error.value = 'Incorret login credentials'
     }
 }
