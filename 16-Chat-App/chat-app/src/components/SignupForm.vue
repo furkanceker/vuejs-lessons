@@ -10,7 +10,7 @@
 
 <script>
 import {ref} from 'vue'
-import useSignup from '../compasables/useSignup'
+import useSignup from '../composables/useSignup'
 export default {
     setup(props, context){
         const {error, signup} = useSignup()
