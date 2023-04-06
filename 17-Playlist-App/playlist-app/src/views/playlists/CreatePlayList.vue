@@ -6,23 +6,48 @@
     <label>Upload Playlist Cover İmage</label>
     <input type="file" @change="handleChange">
     <div class="error">{{ fileError }}</div>
-    <button>Create</button>
+    <button v-if="!isPending">Create</button>
+    <button v-else>Loading</button>
   </form>
 </template>
 
 <script>
-import { file } from '@babel/types';
 import { ref } from 'vue';
+import useStorage from '@/composables/useStorage' 
+import useCollection from '@/composables/useCollections';
+import getUser from '@/composables/getUser';
+import { timestamp } from '@/firebase/config';
 
 export default {
     setup(){
+
+        const {filePath, url, uploadImage} = useStorage()
+        const {error,addDoc} = useCollection('playlists')
+        const {user} = getUser()
+        const isPending = ref(false)
+
         const title = ref("")
         const description = ref("")
         const file = ref(null)
         const fileError = ref(null)
-        const handleSubmit = () => {
+        const handleSubmit = async () => {
             if(file.value){
-                console.log(title.value,description.value, file.value)
+                isPending.value = true
+                await uploadImage(file.value)
+                await addDoc({
+                    title: title.value,
+                    description: description.value,
+                    userId: user.value.uid,
+                    userName: user.value.displayName,
+                    coverUrl: url.value,
+                    filePath: filePath.value,
+                    songs: [],
+                    createdAt: timestamp(),
+                })
+                isPending.value = false
+                if(!error.value){
+                    console.log("playlist added")
+                }
             }
         }
 
@@ -38,7 +63,7 @@ export default {
             }
         }
 
-        return {title,description,handleSubmit,handleChange,fileError}
+        return {title,isPending,description,handleSubmit,handleChange,fileError}
     }
 }
 </script>
